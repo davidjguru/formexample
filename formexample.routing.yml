@@ -1,0 +1,7 @@
+formexample_form:
+  path: 'formexample/myform'
+  defaults:
+    _title: 'Form Example Drupal 8'
+    _form: '\Drupal\formexample\Form\FormExample'
+  requirements:
+    _permission: 'access content'

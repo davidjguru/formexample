@@ -1,0 +1,5 @@
+name: Form Example
+type: module
+description: Demonstrates how to build a form with Form API
+package: Custom
+core: 8.x

@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the formexample module.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Creates some default entries on this module custom table.
+ *
+ * @see hook_install()
+ *
+ * @ingroup formexample
+ */
+function formexample_install() {
+
+  // Adding a default entry.
+  $fields = [
+    'name' => 'John',
+    'surname' => 'Smith',
+    'age' => 21,
+  ];
+  db_insert('formexample')
+    ->fields($fields)
+    ->execute();
+}
+
+/**
+ * Implements hook_schema().
+ *
+ * Defines the database tables used by this module.
+ *
+ * @see hook_schema()
+ *
+ * @ingroup formexample
+ */
+
+function formexample_schema() {
+  $schema['formexample'] = [
+    'description' => 'Stores data for formexample module.',
+    'fields' => [
+      'pid' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique person ID.',
+      ],
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Name',
+      ],
+      'surname' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Surname',
+      ],
+      'age' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'tiny',
+        'description' => 'Age',
+      ],
+    ],
+    'primary key' => ['pid'],
+    'indexes' => [
+      'name' => ['name'],
+      'surname' => ['surname'],
+      'age' => ['age'],
+    ],
+  ];
+
+  return $schema;
+}
